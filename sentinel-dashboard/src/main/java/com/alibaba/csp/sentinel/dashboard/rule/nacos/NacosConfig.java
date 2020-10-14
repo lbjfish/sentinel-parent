@@ -15,6 +15,7 @@
  */
 package com.alibaba.csp.sentinel.dashboard.rule.nacos;
 
+import com.alibaba.csp.sentinel.dashboard.controller.gateway.GatewayFlowRuleController;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.ApiDefinitionEntity;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.GatewayFlowRuleEntity;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.*;
@@ -24,6 +25,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.api.PropertyKeyConst;
 import com.alibaba.nacos.api.config.ConfigFactory;
 import com.alibaba.nacos.api.config.ConfigService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,6 +40,8 @@ import java.util.Properties;
  */
 @Configuration
 public class NacosConfig {
+
+    private final Logger logger = LoggerFactory.getLogger(NacosConfig.class);
 
     @Bean
     public Converter<List<FlowRuleEntity>, String> flowRuleEntityEncoder() {
@@ -100,6 +105,10 @@ public class NacosConfig {
     public ConfigService nacosConfigService() throws Exception {
         String namespace = System.getProperty("nacos.namespace");
         String serverAddr = Optional.ofNullable(System.getProperty("nacos.serverAddr")).orElse("localhost:8848");
+
+        logger.info("nacos.namespace={}", namespace);
+        logger.info("nacos.serverAddr={}", serverAddr);
+
         Properties properties = new Properties();
         properties.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
         if(StringUtil.isNotBlank(namespace)){
