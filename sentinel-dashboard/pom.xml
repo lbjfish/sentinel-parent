@@ -178,7 +178,7 @@
                         <imageTag>latest</imageTag>
                     </imageTags>
                     <baseImage>java:8</baseImage>
-                    <entryPoint>["java", "-jar", "-Dserver.port=8081","/${project.build.finalName}.jar"]
+                    <entryPoint>["java", "-jar", "-Dserver.port=8081", "-Dcsp.sentinel.dashboard.server=0.0.0.0:8081","-Dnacos.namespace=d4178075-92ee-429a-baad-6cd01d59b9b8","-Dnacos.serverAddr=internal-myyshop-qa-nacos-alb-2031911351.cn-north-1.elb.amazonaws.com.cn","-Dsentinel.dashboard.auth.username=myyshop","-Dsentinel.dashboard.auth.password=myyshop","/${project.build.finalName}.jar"]
                     </entryPoint>
                     <resources>
                         <resource>
