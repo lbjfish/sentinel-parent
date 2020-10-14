@@ -178,7 +178,7 @@
                         <imageTag>latest</imageTag>
                     </imageTags>
                     <baseImage>java:8</baseImage>
-                    <entryPoint>["java", "-jar", "-Dspring.profiles.active=dev","/${project.build.finalName}.jar"]
+                    <entryPoint>["java", "-jar", "-Dserver.port=8081","/${project.build.finalName}.jar"]
                     </entryPoint>
                     <resources>
                         <resource>
